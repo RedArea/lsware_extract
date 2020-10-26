@@ -1,1 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+
+import lsware_extract
+
+if __name__ == '__main__':
+    lsware_extract.main()
