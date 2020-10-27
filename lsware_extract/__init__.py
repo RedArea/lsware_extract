@@ -1,21 +1,50 @@
 import os
 import sys
 import argparse
-from time import sleep
+import time
 from random import randint
 
 def _real_main(argv=None):
     parser = argparse.ArgumentParser(description="lsware_extract dummy tool")
-    parser.add_argument('-type', help="select type [all, part, partial]", required=True, choices=['all', 'part', 'partial'])
-    parser.add_argument('-in', help="input the path of the content file", required=True, dest='content')
-    parser.add_argument('-media', help="select media [image, video, audio, mobile]", required=True, choices=['image', 'video', 'audio', 'mobile'])
-    parser.add_argument('-log', help="input the path of the log file", required=True, type=argparse.FileType('a'))  # 빈 값일 시 Error 발생
-    parser.add_argument('-out', help="input the path of the dna file")
-
+    parser.add_argument('-type' , default=None) #, help="select type [all, part, partial]", required=True, choices=['all', 'part', 'partial'])
+    parser.add_argument('-in'   , default=None, dest='content') #, help="input the path of the content file", required=True)
+    parser.add_argument('-media', default=None) #, help="select media [image, video, audio, mobile]", required=True, choices=['image', 'video', 'audio', 'mobile'])
+    parser.add_argument('-log'  , default=None, help="input the path of the log file", required=True, type=argparse.FileType('a'))
+    parser.add_argument('-out'  , default=None) #, help="input the path of the dna file")
     args = parser.parse_args()
-    args.log.close()
+    
+    type    = args.type.lower()
+    content = args.content
+    media   = args.media.lower()
+    log     = args.log
+    out     = args.out
 
+    start_time = time.strftime('%Y-%m-%d %H:%M:%S')
     sleep(randint(0, 3))
+
+    if type is None or content is None:
+        log.write()##
+        sys.exit()
+
+    if type is 'all':
+        if out is None:
+            log.write()##
+            sys.exit()
+        else:
+            if out[-1] is not '/':
+                out = out + '/'
+        
+        dna_file_name = content.split('/')[-1]
+
+        if media is 'image':
+            dna_file_name = dna_file_name + '.dna'
+
+        dna_path = out + '/' + dna_file_name
+        if os.path.exists(dna_path):
+            os.remove(dna_path)
+
+        path = os.path.realpath(os.path.abspath(__file__))
+        
 
     with open(args.log.name, 'a') as f:
         f.write(args.type + '\n')
@@ -26,8 +55,10 @@ def _real_main(argv=None):
 def main(argv=None):
     try:
         _real_main(argv)
-    except :
-        print "exception!!!!!!!!!!"
+    except OSError as e:
+        print "Invalid log file path.", e
+    except Exception as e:
+        print "exception!!!!!!!!!!", e
 
 
  
