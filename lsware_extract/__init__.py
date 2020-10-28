@@ -23,12 +23,12 @@ def _real_main(argv=None):
     sleep(randint(0, 3))
 
     if type is None or content is None:
-        log.write()##
+        log.write()## 오류 로그 포함 작성 후 종료
         sys.exit()
 
     if type is 'all':
         if out is None:
-            log.write()##
+            log.write()## 오류 로그 포함 작성 후 종료
             sys.exit()
         else:
             if out[-1] is not '/':
@@ -40,17 +40,35 @@ def _real_main(argv=None):
             dna_file_name = dna_file_name + '.dna'
 
         dna_path = out + '/' + dna_file_name
+
         if os.path.exists(dna_path):
             os.remove(dna_path)
 
-        path = os.path.realpath(os.path.abspath(__file__))
-        
+        init_path = os.path.realpath(os.path.abspath(__file__))
+        root_path_list = init_path.split(os.path.sep)[:-2]
+        bin_path = os.path.join(os.path.sep.join(root_path_list), 'bin')
+        dna_sample_path = os.path.join(bin_path, 'sample.dna')
+        adna_file = os.path.join(out, dna_file_name + '.adna')
 
-    with open(args.log.name, 'a') as f:
-        f.write(args.type + '\n')
-        f.write(args.content + '\n')
-        f.write(args.media + '\n')
-        f.write(args.log.name + '\n')
+        with open(dna_sample_path, 'r') as dna:
+            with open(adna_file, 'a') as adna:
+                for i in range(randint(0, 300)):
+                    line = dna.readline()
+                    if not line: break
+                    adna.write(line)
+
+        vdna_file = os.path.join(out, dna_file_name + '.vdna')
+        with open(dna_sample_path, 'r') as dna:
+            with open(vdna_file, 'a') as vdna:
+                for i in range(randint(0, 300)):
+                    line = dna.readline()
+                    if not line: break
+                    vdna.write(line)   
+        
+        log.write()## 로그 작성 후 종료
+        sys.exit()
+    else:
+        print("part")
 
 def main(argv=None):
     try:
