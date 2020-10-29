@@ -30,7 +30,7 @@ def _real_main(argv=None):
         log.write(log_msg)
         sys.exit()
 
-    if type is 'all':
+    if type == 'all':
         if not out:
             end_time = time.strftime('%Y-%m-%d %H:%M:%S')
             errmsg = "parmeter error : Missing path to save feature point file"
@@ -55,8 +55,8 @@ def _real_main(argv=None):
         root_path_list = init_path.split(os.path.sep)[:-2]
         bin_path = os.path.join(os.path.sep.join(root_path_list), 'bin')
         dna_sample_path = os.path.join(bin_path, 'sample.dna')
-        adna_file = os.path.join(out, dna_file_name + '.adna')
 
+        adna_file = os.path.join(out, dna_file_name + '.adna')
         with open(dna_sample_path, 'r') as dna:
             with open(adna_file, 'a') as adna:
                 for i in range(randint(0, 300)):
