@@ -26,7 +26,7 @@ def _real_main(argv=None):
     if not type or not content:
         end_time = time.strftime('%Y-%m-%d %H:%M:%S')
         errmsg = "parameter error : {type}, {content}, {media}, {log}, {out}".format(type=type, content=content, media=media, log=log.name, out=out)
-        log_msg = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
+        log_msg = "{start_time}, {content}, {end_time}, {errmsg}\n".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
         log.write(log_msg)
         sys.exit()
 
@@ -34,7 +34,7 @@ def _real_main(argv=None):
         if not out:
             end_time = time.strftime('%Y-%m-%d %H:%M:%S')
             errmsg = "parmeter error : Missing path to save feature point file"
-            log_msg = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
+            log_msg = "{start_time}, {content}, {end_time}, {errmsg}\n".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
             log.write(log_msg)
             sys.exit()
         else:
@@ -73,7 +73,7 @@ def _real_main(argv=None):
                     vdna.write(line)   
         
         end_time = time.strftime('%Y-%m-%d %H:%M:%S')
-        log_msg = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
+        log_msg = "{start_time}, {content}, {end_time}, {errmsg}\n".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
         log.write(log_msg)
         sys.exit()
     else:
@@ -93,9 +93,9 @@ def _real_main(argv=None):
         end_time = time.strftime('%Y-%m-%d %H:%M:%S')
     
         if not errmsg:   
-            log_msg = "{start_time}, {content}, {query_time}, {find_value}, {end_time}".format(start_time=start_time, content=content, query_time=query_time, find_value=find_value, end_time=end_time)
+            log_msg = "{start_time}, {content}, {query_time}, {find_value}, {end_time}\n".format(start_time=start_time, content=content, query_time=query_time, find_value=find_value, end_time=end_time)
         else:
-            log_msg = "{start_time}, {content}, {query_time}, {find_value}, {end_time}, {errmsg}".format(start_time=start_time, content=content, query_time=query_time, find_value=find_value, end_time=end_time, errmsg=errmsg)
+            log_msg = "{start_time}, {content}, {query_time}, {find_value}, {end_time}, {errmsg}\n".format(start_time=start_time, content=content, query_time=query_time, find_value=find_value, end_time=end_time, errmsg=errmsg)
 
         log.write(log_msg)
         sys.exit()
