@@ -108,17 +108,3 @@ def main(argv=None):
     except Exception as e:
         print "unhandled exception!", e
 
-
- 
-# log = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=, content=args.content, end_time=, errmsg="")
-# log = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=, content=args.content, end_time=, errmsg="")
-
-
-# all = 
-# [yyyy-mm-dd hh:mm:ss(starttime), input_file_path, yyyy-mm-dd hh:mm:ss(endtime), errmsg]
-# -type all -media video -in "e:\pes\test\video\V380\369552.avi" -log "E:\pes_run\PES-2017-FF-089\log\PES-2017-FF-089_V_X3350.log" -out "E:\pes_run\PES-2017-FF-089\DNA"
-# -type all -media image -in "D:\PES_TEST\SRC\image\641145" -log "D:\PES_TEST\PES-2013-FF-045\LOG\PES-2013-FF-045_I_X350.log" -out "D:\PES_TEST\PES-2013-FF-045\DNA\image"
-#     -> 641145.dna 로 출력
-
-# part= [yyyy-mm-dd hh:mm:ss(starttime), input_file_path, yyyy-mm-dd hh:mm:ss(querytime), return_value, endtime, errmsg]
-# -type part -media video -in "e:\pes\test\video\V380\369552.avi" -log "E:\pes_run\PES-2017-FF-089\log\PES-2017-FF-089_V_X3310.log"
