@@ -6,11 +6,11 @@ from random import randint
 
 def _real_main(argv=None):
     parser = argparse.ArgumentParser(description="lsware_extract dummy tool")
-    parser.add_argument('-type' , default='') #, help="select type [all, part, partial]", required=True, choices=['all', 'part', 'partial'])
-    parser.add_argument('-in'   , default='', dest='content') #, help="input the path of the content file", required=True)
-    parser.add_argument('-media', default='') #, help="select media [image, video, audio, mobile]", required=True, choices=['image', 'video', 'audio', 'mobile'])
-    parser.add_argument('-log'  , default='', help="input the path of the log file", required=True, type=argparse.FileType('a'))
-    parser.add_argument('-out'  , default='') #, help="input the path of the dna file")
+    parser.add_argument('-type') #, help="select type [all, part, partial]", required=True, choices=['all', 'part', 'partial'])
+    parser.add_argument('-in', dest='content') #, help="input the path of the content file", required=True)
+    parser.add_argument('-media') #, help="select media [image, video, audio, mobile]", required=True, choices=['image', 'video', 'audio', 'mobile'])
+    parser.add_argument('-log, help="input the path of the log file", required=True, type=argparse.FileType('a'))
+    parser.add_argument('-out') #, help="input the path of the dna file")
     args = parser.parse_args()
     
     type    = args.type.lower()
@@ -21,11 +21,11 @@ def _real_main(argv=None):
     errmsg  = ""
 
     start_time = time.strftime('%Y-%m-%d %H:%M:%S')
-    sleep(randint(0, 3))
+    time.sleep(randint(0, 3))
 
     if not type or not content:
         end_time = time.strftime('%Y-%m-%d %H:%M:%S')
-        errmsg = "parameter error : {type}, {content}, {media}, {log}, {out}".format(type=type, content=content, media=media, log=log, out=out)
+        errmsg = "parameter error : {type}, {content}, {media}, {log}, {out}".format(type=type, content=content, media=media, log=log.name, out=out)
         log_msg = "{start_time}, {content}, {end_time}, {errmsg}".format(start_time=start_time, content=content, end_time=end_time, errmsg=errmsg)
         log.write(log_msg)
         sys.exit()
